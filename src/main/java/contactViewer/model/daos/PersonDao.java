@@ -36,7 +36,7 @@ public class PersonDao {
 				}
 			}
 		}
-		
+		System.out.println("la liste"+list);
 		return list;
 		
 	}

@@ -12,7 +12,7 @@ public class PersonValueFactory implements Callback<TableColumn.CellDataFeatures
 
 @Override
 public ObservableValue<String> call(CellDataFeatures<Person, String> cellData) {
-	return new SimpleStringProperty(cellData.getValue().getLastname().concat(cellData.getValue().getFirstname()));
+	return new SimpleStringProperty(cellData.getValue().getLastname().concat(" ").concat(cellData.getValue().getFirstname()));
 }
 
 }

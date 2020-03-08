@@ -1,12 +1,9 @@
 package contactViewer.view;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Map;
 
 import contactViewer.model.daos.PersonDao;
 import contactViewer.model.entities.Person;
-import contactViewer.service.PersonService;
 import contactViewer.service.StageService;
 import contactViewer.service.ValidationService;
 import contactViewer.service.ViewService;
@@ -38,7 +35,8 @@ public class AddContactController {
 	private static Person currentPerson = new Person();
 	
 	private static PersonDao personDao= new PersonDao();
-	private static Map<String, Boolean>  validationMap;
+
+ 
 	
 	@FXML
 	private void onBackPressed() {
@@ -98,6 +96,9 @@ public class AddContactController {
 					alert.setContentText("sauvegarde éffectuée avec succès");
 	
 					alert.showAndWait();
+					onCancelHandler();
+			
+					
 					return;
 				}catch(SQLException e) {
 					e.printStackTrace();
@@ -111,6 +112,8 @@ public class AddContactController {
 			alert.setContentText("Tous les champs sont vides");
 
 			alert.showAndWait();
+			
+			
 		}
 
 	}

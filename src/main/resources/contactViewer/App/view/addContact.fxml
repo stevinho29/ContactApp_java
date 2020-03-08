@@ -16,7 +16,7 @@
       <TextField fx:id="nicknameField" layoutX="232.0" layoutY="204.0" prefHeight="27.0" prefWidth="279.0" />
       <TextField fx:id="phoneNumberField" layoutX="232.0" layoutY="244.0" prefHeight="27.0" prefWidth="279.0" />
       <Button layoutX="523.0" layoutY="449.0" mnemonicParsing="false" onAction="#onSaveHandler" text="enregistrer" />
-      <Button layoutX="135.0" layoutY="449.0" mnemonicParsing="false" onAction="#onCancelHandler" text="annuler" />
+      <Button layoutX="135.0" layoutY="449.0" mnemonicParsing="false" onAction="#onCancelHandler" text="effacer tous les champs" />
       <Text layoutX="209.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formulaire d'ajout de contact:" wrappingWidth="341.22900390625">
          <font>
             <Font name="Apple Chancery" size="25.0" />

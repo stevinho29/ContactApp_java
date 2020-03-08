@@ -20,7 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class contactListController {
+public class ContactListController {
 
 	@FXML
 	private TextField firstnameField;
@@ -55,10 +55,10 @@ public class contactListController {
 	private void initialize() throws SQLException {
 		
 		this.personColumn.setCellValueFactory(new PersonValueFactory());
-		//populateList();
+		populateList();
 		
 		personsTable.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<Object>() {
-
+		
 		@Override
 		public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
 				// TODO Auto-generated method stub
@@ -72,52 +72,65 @@ public class contactListController {
 		this.personsTable.getSelectionModel().clearSelection();;
 	}
 	
-	private void populateList() throws SQLException {
+	public void populateList() throws SQLException {
 		
 		this.personsTable.setItems(PersonService.getPersons());
 		refreshList();
 	}
 	
-	private void resetView() {
+	public void resetView() {
 		showPersonDetails(null);
 		refreshList();
 	}
 	
 	@FXML 
 	public void onSaveHandler() {
-		  currentPerson.setLastname(this.lastnameField.getText());
-		  currentPerson.setFirstname(this.firstnameField.getText());
-		  currentPerson.setNickname(this.nicknameField.getText());
-		  currentPerson.setAddress(this.addressField.getText());
-		  currentPerson.setEmail_address(this.emailAddressField.getText());
-		  currentPerson.setPhone_number(Integer.valueOf(this.phoneNumberField.getText()));
-		  currentPerson.setBirth_date(this.birthDatePicker.getValue());
-		  try {
-		  personDao.updatePerson(currentPerson);
-		  
-		  resetView();      // à voir si utile de reset la view 
-		  
-		  Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Notifications");
-			//alert.setHeaderText("Look, an Information Dialog");
-			alert.setContentText("Sauvegarde effectuée avec succès");
-
-			alert.showAndWait();
-			
-		  }catch(Exception e) {
-			  e.printStackTrace();
+		
+		if(!this.lastnameField.getText().isEmpty() && !this.firstnameField.getText().isEmpty() && !this.nicknameField.getText().isEmpty()&& !this.addressField.getText().isEmpty() && !this.emailAddressField.getText().isEmpty()
+				&& !this.phoneNumberField.getText().isEmpty() && this.birthDatePicker.getValue() != null) {
+			  currentPerson.setLastname(this.lastnameField.getText());
+			  currentPerson.setFirstname(this.firstnameField.getText());
+			  currentPerson.setNickname(this.nicknameField.getText());
+			  currentPerson.setAddress(this.addressField.getText());
+			  currentPerson.setEmail_address(this.emailAddressField.getText());
+			  currentPerson.setPhone_number(Integer.valueOf(this.phoneNumberField.getText()));
+			  currentPerson.setBirth_date(this.birthDatePicker.getValue());
+			  try {
+			  personDao.updatePerson(currentPerson);
+			  
+			  resetView();      // à voir si utile de reset la view 
 			  
 			  Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Notifications");
 				//alert.setHeaderText("Look, an Information Dialog");
-				alert.setContentText("Une erreur s'est prosuite lors de la sauvegarde");
-
+				alert.setContentText("Sauvegarde effectuée avec succès");
+	
 				alert.showAndWait();
-		  }
+				
+			  }catch(Exception e) {
+				  e.printStackTrace();
+				  
+				  Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Notifications");
+					//alert.setHeaderText("Look, an Information Dialog");
+					alert.setContentText("Une erreur s'est prosuite lors de la sauvegarde");
+	
+					alert.showAndWait();
+			  }
+		}else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Notifications");
+			//alert.setHeaderText("Look, an Information Dialog");
+			alert.setContentText("un ou des champs sont vides... sauvegarde impossible");
+
+			alert.showAndWait();
+		}
 	}
 	@FXML 
 	public void onDeleteButtonPressed() {
 		
+		if(!this.lastnameField.getText().isEmpty() && !this.firstnameField.getText().isEmpty() && !this.nicknameField.getText().isEmpty()&& !this.addressField.getText().isEmpty() && !this.emailAddressField.getText().isEmpty()
+				&& !this.phoneNumberField.getText().isEmpty() && this.birthDatePicker.getValue() != null) {
 		  currentPerson.setLastname(this.lastnameField.getText());
 		  currentPerson.setFirstname(this.firstnameField.getText());
 		  currentPerson.setNickname(this.nicknameField.getText());
@@ -133,6 +146,7 @@ public class contactListController {
 	    	if (selectedIndex >= 0)
 	    	{
 	    		personsTable.getItems().remove(selectedIndex);
+	    		
 	    		resetView();
 	    	}
 		  }catch(Exception e) {
@@ -143,6 +157,14 @@ public class contactListController {
 
 				alert.showAndWait();
 		  }
+		}else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Notifications");
+			//alert.setHeaderText("Look, an Information Dialog");
+			alert.setContentText("un ou des champs sont vides... suppression impossible");
+
+			alert.showAndWait();
+		}
 		  
 	}
 	@FXML
@@ -179,4 +201,6 @@ public class contactListController {
 			
 		}
 	}
+	
+
 }

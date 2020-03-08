@@ -1,7 +1,7 @@
 package contactViewer.service;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import contactViewer.model.daos.PersonDao;
 import contactViewer.model.entities.Person;
@@ -10,24 +10,24 @@ import javafx.collections.ObservableList;
 
 public class PersonService {
 	private ObservableList<Person> persons;
-	private  PersonDao personDao;
-	private ArrayList<Person> usefulList;
+	private  PersonDao personDao= new PersonDao();
+	private List<Person> usefulList;
 	
 	public PersonService()  {
 		
 		try {
-			persons=FXCollections.observableArrayList(personDao.listAllPerson());
-		} catch (SQLException e) {
+			//System.out.println(personDao.listAllPerson());
+			usefulList= personDao.listAllPerson();
+		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		if(usefulList != null){
+			persons= FXCollections.observableArrayList(usefulList);
+		}
+		else
+			persons= FXCollections.observableArrayList();		
 		
-		/*
-		 * try { usefulList= personDao.listAllPerson(); } catch (SQLException e) { //
-		 * TODO Auto-generated catch block e.printStackTrace(); }
-		 * 
-		 * for(Person p: usefulList) { persons.add(p); }
-		 */
 	}
 	public static ObservableList<Person> getPersons() {
 		return PersonServiceHolder.INSTANCE.persons;
