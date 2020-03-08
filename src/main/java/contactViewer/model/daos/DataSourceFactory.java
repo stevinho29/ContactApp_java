@@ -26,7 +26,7 @@ public class DataSourceFactory {
 				+ "nickname VARCHAR(45) NOT NULL,"
 				+ "phone_number VARCHAR(15) NULL,"
 				+ "address VARCHAR(200) NULL,"
-				+ "email_address VARCHAR(150) NULL,"
+				+ "email_address VARCHAR(150) NULL UNIQUE,"
 				+ "birth_date DATE NULL,"
 				+ "urlPhoto VARCHAR(255),"
 				+ "PRIMARY KEY (idperson));";

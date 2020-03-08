@@ -30,13 +30,14 @@ public class Person {
 		this.lastname= lastname;
 		this.firstname= firstname;
 		this.nickname= nickname;
-		this.phone_number= 12;
+		this.phone_number= 00;
 		this.address= "anywhere";
-		this.email_address= "email";
+		this.email_address= "noemail";
 		this.birth_date= LocalDate.now();
-		this.url_photo= "url";
+		this.url_photo= "nourl";
 	
 	}
+	public Person() {}
 	public Integer getIdperson() {
 		return idperson;
 	}
