@@ -14,12 +14,12 @@
             <Font name="Apple Chancery" size="41.0" />
          </font>
       </Text>
-      <Button id="contactListButton" onAction="#showContactList" layoutX="74.0" layoutY="145.0" mnemonicParsing="false" text="Liste des contacts">
+      <Button id="contactListButton" layoutX="74.0" layoutY="145.0" mnemonicParsing="false" onAction="#showContactList" text="Liste des contacts">
          <font>
             <Font name="Apple Chancery" size="14.0" />
          </font>
       </Button>
-      <Button id="addContactButton" onAction="#showAddContactView" layoutX="75.0" layoutY="243.0" mnemonicParsing="false" text="Ajouter un contact">
+      <Button id="addContactButton" layoutX="75.0" layoutY="243.0" mnemonicParsing="false" onAction="#showAddContactView" text="Ajouter un contact">
          <font>
             <Font name="Apple Chancery" size="13.0" />
          </font>
@@ -31,5 +31,10 @@
             <Font name="Apple Chancery" size="24.0" />
          </font>
       </Text>
+      <Button layoutX="75.0" layoutY="324.0" onAction="#showExportView" mnemonicParsing="false" text="Exporter">
+         <font>
+            <Font name="Apple Chancery" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

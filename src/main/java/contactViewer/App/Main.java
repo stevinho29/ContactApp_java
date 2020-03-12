@@ -19,7 +19,7 @@ public class Main extends Application {
 		StageService.showView((Node) ViewService.getView("HomeScreen"));
 		
 		System.out.println( "Hello World!" );
-	     
+	     System.out.println(System.getProperty("user.dir"));
         DataSourceFactory.createdatabaseSchema();
 	}
 

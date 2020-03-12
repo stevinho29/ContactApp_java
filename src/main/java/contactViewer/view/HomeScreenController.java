@@ -28,5 +28,9 @@ public class HomeScreenController {
 	public void showAddContactView() {
 		StageService.showView(ViewService.getView("addContact"));
 	}
+	@FXML
+	public void showExportView() {
+		StageService.showView(ViewService.getView("exportScreen"));
+	}
 }
 
