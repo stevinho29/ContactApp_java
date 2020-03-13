@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
@@ -32,7 +33,7 @@
                      <children>
                         <Label alignment="TOP_LEFT" layoutX="13.0" layoutY="107.0" text="Last name" />
                         <Label alignment="TOP_LEFT" layoutX="12.0" layoutY="201.0" text="Nickname" />
-                        <Button layoutX="238.0" layoutY="417.0" onAction="#onSaveHandler" mnemonicParsing="false" text="sauvegarder" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="228.0" />
+                        <Button layoutX="238.0" layoutY="417.0" mnemonicParsing="false" onAction="#onSaveHandler" text="sauvegarder" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="228.0" />
                         <Button mnemonicParsing="false" onAction="#onDeleteButtonPressed" text="supprimer " AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                         <TextField fx:id="lastnameField" layoutX="116.0" layoutY="102.0" prefHeight="27.0" prefWidth="395.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="45.0" />
                         <TextField fx:id="firstnameField" layoutX="116.0" layoutY="142.0" prefHeight="27.0" prefWidth="392.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="48.0" />
@@ -48,9 +49,11 @@
                         <DatePicker fx:id="birthDatePicker" layoutX="115.0" layoutY="380.0" />
                         <Text layoutX="227.0" layoutY="46.0" strokeType="OUTSIDE" text="fiche contact" textAlignment="CENTER" wrappingWidth="101.43489074707031" />
                         <Button layoutX="9.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="32.0" prefWidth="89.0" text="retour" />
+                        <Button fx:id="uploadPhotoButton" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" onAction="#updatePhoto" text="upload photo" visible="false" />
+                        <ImageView fx:id="profilePhoto" fitHeight="91.0" fitWidth="144.0" layoutX="398.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
-                  <Button layoutX="219.0" layoutY="296.0" mnemonicParsing="false" text="Exporter en csv" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                  <Button fx:id="exportOneButton" layoutX="219.0" layoutY="296.0" onAction="#exportOne" mnemonicParsing="false" text="Exporter en csv" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

@@ -18,6 +18,7 @@ public class ExportScreenController {
 	private static PersonDao personDao= new PersonDao();
 	private static VcardService vcard= new VcardService();
 	private static List<Person>  personList;
+	
 	@FXML
 	public void initialize() {
 		
@@ -34,7 +35,6 @@ public class ExportScreenController {
 		    };
 		    t.start();
 			
-		
 	}
 	
 	@FXML
@@ -44,9 +44,9 @@ public class ExportScreenController {
 			vcard.orchestrator(personList);
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Notifications");
+			alert.setTitle("Exportation réussie");
 			//alert.setHeaderText("Look, an Information Dialog");
-			alert.setContentText("Exportation réussie");
+			alert.setContentText("Exportation réussie "+VcardService.counter+" mis à jour ");
 	
 			alert.showAndWait();
 		
@@ -71,8 +71,7 @@ public class ExportScreenController {
 		StageService.showView(ViewService.getView("HomeScreen"));
 	}
 	
-	private void doInBackground() {
-	}
+	
 
 }
 

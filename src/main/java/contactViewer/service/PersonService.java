@@ -39,6 +39,9 @@ public class PersonService {
 	public static void addPerson(Person person) throws SQLException {
 		PersonServiceHolder.INSTANCE.personDao.addPerson(person);
 	}
+	public static void addUrlPhoto( String email,String urlPhoto) {
+		PersonServiceHolder.INSTANCE.personDao.addUrlPhoto(email, urlPhoto);;
+	}
 
 	private static class PersonServiceHolder {
 			private static final PersonService INSTANCE = new PersonService();

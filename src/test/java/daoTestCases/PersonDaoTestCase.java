@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.After;
@@ -138,5 +139,29 @@ public class PersonDaoTestCase {
 		//THEN 
 		assertThat(list.size()).isEqualTo(1);
 		
+	}
+	
+	@Test
+	public void shouldAddUrl() throws SQLException{
+		//GIVEN
+		Person person;
+		String url= System.getProperty("user.home")+"/Downloads/Vcard/profile images";
+		PersonDao personDao= new PersonDao();
+		Person currentPerson= new Person("steve","test","test",467464,"somewheere in the world","zrvzv@",LocalDate.now(),"nourl");
+		personDao.addPerson(currentPerson); 
+		//WHEN
+		personDao.addUrlPhoto("zrvzv@", url);
+		//THEN 
+		try(Connection connection= DataSourceFactory.getConnection()){
+			String sql= "SELECT * FROM person WHERE urlPhoto= ?"; // parce que l'email est unique
+			try(PreparedStatement statement= connection.prepareStatement(sql)){
+				statement.setString(1,url);
+				try(ResultSet results= statement.executeQuery()){
+					while(results.next()) 
+						assertThat(results.getFetchSize()==1);
+			}
+			}
+		}
+
 	}
 }

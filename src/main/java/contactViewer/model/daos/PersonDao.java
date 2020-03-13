@@ -96,5 +96,19 @@ public class PersonDao {
 			e.printStackTrace();
 		}
 	}
+	public void addUrlPhoto(String email, String urlPhoto) {
+		try(Connection connection= (Connection) DataSourceFactory.getConnection()){
+			String sql = "UPDATE person SET urlPhoto= ? WHERE email_address = ? ";
+			try(PreparedStatement statement = connection.prepareStatement(sql)){
+				statement.setString(1, urlPhoto);
+				statement.setString(2, email);
+				int nbRows= statement.executeUpdate();
+				System.out.println("nb de lignes :"+nbRows);
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

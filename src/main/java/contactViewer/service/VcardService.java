@@ -18,8 +18,7 @@ public class VcardService {
 	private static Path outputfile;				//représente le fichier 
 	private static Path outputdirectory;		// représente le dossier Vcard dans lequel sera enregistré tous les fichiers Vcard
 	private static Path downloadirectory;			// représente le chemin vers download(télechargements de n'importe quel os
-	final private String begin= "BEGIN:VCARD";
-	final private String version= "4.0";
+	public static int counter=0;				// counter utile pour garder le nombre de contacts update
 	private Vcard4 vcardObject;
 	
 	
@@ -28,7 +27,7 @@ public class VcardService {
 	}
 	
 	public void orchestrator(List<Person> personList) throws IOException { // coordonne l'exportation des contacts
-		
+		counter = 0;			// on réinitialise le counter à zero
 		if(isVcardDirectoryAlreadyExists()) {
 			for(Person p: personList) {
 				instantiateVcardObject(p);
@@ -43,6 +42,18 @@ public class VcardService {
 		}
 		
 	}
+	public void orchestrator( Person person) throws IOException {		// export d'une seule personne
+		counter = 0;			// on réinitialise le counter à zero
+		if(isVcardDirectoryAlreadyExists()) {
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+		else {
+			createVcardDirectory();
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+	}
 	
 	private void instantiateVcardObject(Person person) {
 		this.vcardObject = new Vcard4(person.getLastname(),person.getFirstname(),person.getPhone_number().toString(),person.getAddress(),person.getEmail_address());
@@ -51,7 +62,7 @@ public class VcardService {
 	private void exportVcardFile() throws IOException {
 		
 			if(isVcardFileAlreadyExists(vcardObject.getFn())) {
-				
+				counter++;
 				fillinVcardFile();
 			}
 			else {

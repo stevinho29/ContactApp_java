@@ -16,7 +16,9 @@ public class HomeScreenController {
 	}
 	
 	public void updateTextArea() {
-		newsTextArea.setText("Github repo: contactApp ");
+	
+		newsTextArea.setText("Github repo: https://github.com/stevinho29/ContactApp_java\n Be ready for latest relaeased and have fun ");
+		
 	}
 	
 	@FXML

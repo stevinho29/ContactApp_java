@@ -24,14 +24,14 @@
             <Font name="Apple Chancery" size="13.0" />
          </font>
       </Button>
-      <TextArea fx:id="newsTextArea" layoutX="385.0" layoutY="200.0" prefHeight="200.0" prefWidth="295.0" />
+      <TextArea fx:id="newsTextArea" layoutX="385.0" layoutY="200.0" prefHeight="200.0" prefWidth="376.0" />
       <ImageView fitHeight="124.0" fitWidth="200.0" layoutX="586.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Text layoutX="232.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="what'S new on ouR app" textAlignment="CENTER" wrappingWidth="575.99609375">
          <font>
             <Font name="Apple Chancery" size="24.0" />
          </font>
       </Text>
-      <Button layoutX="75.0" layoutY="324.0" onAction="#showExportView" mnemonicParsing="false" text="Exporter">
+      <Button layoutX="75.0" layoutY="324.0" mnemonicParsing="false" onAction="#showExportView" text="Exporter">
          <font>
             <Font name="Apple Chancery" size="13.0" />
          </font>
