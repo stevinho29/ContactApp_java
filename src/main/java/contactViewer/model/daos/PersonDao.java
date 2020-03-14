@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 import contactViewer.model.entities.Person;
 
@@ -18,7 +18,7 @@ public class PersonDao {
 	public List<Person> listAllPerson() throws SQLException{
 		List<Person> list=new ArrayList<>() ;
 		String sql= "SELECT * FROM person";
-		try(Connection connection = (Connection) DataSourceFactory.getConnection()){
+		try(Connection connection =  DataSourceFactory.getConnection()){
 			try(Statement statement= connection.createStatement()){
 				try(ResultSet results= statement.executeQuery(sql)){
 					while(results.next()) {
@@ -43,7 +43,7 @@ public class PersonDao {
 	
 	public void addPerson(Person person) throws SQLException {
 		
-		try(Connection connection= (Connection) DataSourceFactory.getConnection()){
+		try(Connection connection= DataSourceFactory.getConnection()){
 			String sql = "INSERT INTO person(lastname,firstname,nickname,phone_number,address,email_address,birth_date,urlPhoto) values(?,?,?,?,?,?,?,?)";
 			try(PreparedStatement statement = connection.prepareStatement(sql)){
 				statement.setString(1, person.getLastname());
@@ -64,7 +64,7 @@ public class PersonDao {
 	}
 	public void updatePerson(Person person) {
 		
-		try(Connection connection= (Connection) DataSourceFactory.getConnection()){
+		try(Connection connection=  DataSourceFactory.getConnection()){
 			String sql = "UPDATE person SET firstname= ?, nickname= ?,phone_number=?,address=?,email_address=?,birth_date=?,urlPhoto=? WHERE lastname = ? ";
 			try(PreparedStatement statement = connection.prepareStatement(sql)){
 				statement.setString(1, person.getFirstname());
@@ -97,7 +97,7 @@ public class PersonDao {
 		}
 	}
 	public void addUrlPhoto(String email, String urlPhoto) {
-		try(Connection connection= (Connection) DataSourceFactory.getConnection()){
+		try(Connection connection= DataSourceFactory.getConnection()){
 			String sql = "UPDATE person SET urlPhoto= ? WHERE email_address = ? ";
 			try(PreparedStatement statement = connection.prepareStatement(sql)){
 				statement.setString(1, urlPhoto);

@@ -6,15 +6,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="contactViewer.view.ExportScreenController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contactViewer.view.ExportScreenController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="500.0" prefWidth="800.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="303.0">
                <children>
-                  <Button layoutX="38.0" layoutY="201.0" onAction="#export" mnemonicParsing="false" text="exporter tous les contacts" />
-                  <Button layoutX="38.0" layoutY="133.0" mnemonicParsing="false" text="exporter par catégorie" />
+                  <Button layoutX="38.0" layoutY="201.0" mnemonicParsing="false" onAction="#export" text="exporter tous les contacts" />
+                  <Button fx:id="exportCategButton" layoutX="38.0" layoutY="133.0" onAction="#exportByCategory" mnemonicParsing="false" text="exporter par catégorie" />
                   <Text layoutX="54.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type d'exportation">
                      <font>
                         <Font name="Apple Chancery" size="17.0" />

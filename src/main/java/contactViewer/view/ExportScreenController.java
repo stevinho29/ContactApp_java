@@ -65,6 +65,16 @@ public class ExportScreenController {
 		}
 	
 	}
+	@FXML
+	public void exportByCategory() {
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Notifications");
+		//alert.setHeaderText("Look, an Information Dialog");
+		alert.setContentText("Fonctionnalité pas encore implémentée");
+
+		alert.showAndWait();
+	}
 	
 	@FXML
 	private void onBackPressed() {

@@ -5,15 +5,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 
 
 public class DataSourceFactory {
 
 	public static Connection getConnection() throws SQLException {
+			//for an existing Mysql database
 			return DriverManager.getConnection("jdbc:mysql://localhost:8889/contactApp","root","root");
-		    //return DriverManager.getConnection("jdbc:sqlite:sqlite.db");
+		
+			//for embedded sqlite database
+			//String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"/sqlite.db";
+		    //return DriverManager.getConnection(url);
 	}
 	
 	public static void createdatabaseSchema() throws SQLException {

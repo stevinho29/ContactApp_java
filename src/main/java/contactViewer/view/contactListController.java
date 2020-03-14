@@ -91,15 +91,29 @@ public class ContactListController {
 		});
 	}
 	
+	/**
+	 * this method calls refresh method of the tableView and then clear the selection of this one
+	 */
 	private void refreshList() {
 		this.personsTable.refresh();
 		this.personsTable.getSelectionModel().clearSelection();;
 	}
 	
 	public void populateList() throws SQLException {
+		try {
+			this.personsTable.setItems(PersonService.getPersons());
+			refreshList();
 		
-		this.personsTable.setItems(PersonService.getPersons());
-		refreshList();
+		}catch(Exception e){
+			e.printStackTrace();
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Notifications");
+			//alert.setHeaderText("Look, an Information Dialog");
+			alert.setContentText("il parait que vous n'avez pas de database de crée suivant la config suivantte\n \"jdbc:mysql://localhost:8889/contactApp\",\"root\",\"root\"");
+
+			alert.showAndWait();
+		}
 	}
 	
 	public void resetView() throws FileNotFoundException {
