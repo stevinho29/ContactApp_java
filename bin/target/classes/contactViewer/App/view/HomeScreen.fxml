@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contactViewer.view.HomeScreenController">
+   <children>
+      <Text layoutX="68.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="contactUs" textAlignment="CENTER" wrappingWidth="575.99609375" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Apple Chancery" size="41.0" />
+         </font>
+      </Text>
+      <Button id="contactListButton" layoutX="74.0" layoutY="145.0" mnemonicParsing="false" onAction="#showContactList" text="Liste des contacts">
+         <font>
+            <Font name="Apple Chancery" size="14.0" />
+         </font>
+      </Button>
+      <Button id="addContactButton" layoutX="75.0" layoutY="243.0" mnemonicParsing="false" onAction="#showAddContactView" text="Ajouter un contact">
+         <font>
+            <Font name="Apple Chancery" size="13.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="newsTextArea" layoutX="385.0" layoutY="200.0" prefHeight="200.0" prefWidth="376.0" />
+      <ImageView fitHeight="124.0" fitWidth="200.0" layoutX="586.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="232.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="what'S new on ouR app" textAlignment="CENTER" wrappingWidth="575.99609375">
+         <font>
+            <Font name="Apple Chancery" size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="75.0" layoutY="324.0" mnemonicParsing="false" onAction="#showExportView" text="Exporter">
+         <font>
+            <Font name="Apple Chancery" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
