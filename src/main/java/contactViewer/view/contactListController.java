@@ -32,6 +32,9 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ContactListController {
 
+	/**
+	 * attribute of the ContactListController class
+	 */
 	@FXML
 	private TextField firstnameField;
 	@FXML
@@ -70,6 +73,11 @@ public class ContactListController {
 	
 	private static VcardService vcard= new VcardService();
 	@FXML
+	
+	/**
+	 * actions performed when loading contactList fxml layout 
+	 * @throws SQLException
+	 */
 	private void initialize() throws SQLException {
 		
 		this.personColumn.setCellValueFactory(new PersonValueFactory());
@@ -99,6 +107,10 @@ public class ContactListController {
 		this.personsTable.getSelectionModel().clearSelection();;
 	}
 	
+	/**
+	 * this method populate the tableView with Person's object retrieved from the database
+	 * @throws SQLException
+	 */
 	public void populateList() throws SQLException {
 		try {
 			this.personsTable.setItems(PersonService.getPersons());
@@ -116,10 +128,17 @@ public class ContactListController {
 		}
 	}
 	
+	/**
+	 * reset the tableView and then refresh the list inside the tableView
+	 * @throws FileNotFoundException
+	 */
 	public void resetView() throws FileNotFoundException {
 		showPersonDetails(null);
 		refreshList();
 	}
+	/**
+	 * this method export one person to the Download 
+	 */
 	@FXML
 	public void exportOne() {
 		if(!this.lastnameField.getText().isEmpty() && !this.firstnameField.getText().isEmpty() && !this.nicknameField.getText().isEmpty()&& !this.addressField.getText().isEmpty() && !this.emailAddressField.getText().isEmpty()
@@ -136,7 +155,7 @@ public class ContactListController {
 				  Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Notifications");
 					//alert.setHeaderText("Look, an Information Dialog");
-					alert.setContentText("Opération d'exporation réussie");
+					alert.setContentText("Opération d'exporation réussie: disponible dans /téléchargements/Vcard");
 
 					alert.showAndWait();
 			  }catch(Exception e) {
@@ -158,6 +177,10 @@ public class ContactListController {
 			alert.showAndWait();
 		}
 	}
+	
+	/**
+	 * this method performs all action needed to update data of a specific contact
+	 */
 	@FXML 
 	public void onSaveHandler() {
 		
@@ -173,7 +196,7 @@ public class ContactListController {
 			  try {
 			  personDao.updatePerson(currentPerson);
 			  
-			  resetView();      // à voir si utile de reset la view 
+			  refreshList();      // à voir si utile de reset la view 
 			  
 			  Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Notifications");
@@ -201,6 +224,11 @@ public class ContactListController {
 			alert.showAndWait();
 		}
 	}
+	
+	/**
+	 * this method delete a contact present in the list and also in the database
+	 */
+	
 	@FXML 
 	public void onDeleteButtonPressed() {
 		
@@ -242,11 +270,18 @@ public class ContactListController {
 		}
 		  
 	}
+	/**
+	 * return back and show the HomeScreen interface
+	 */
 	@FXML
 	public void onBackPressed() {
 		StageService.showView(ViewService.getView("HomeScreen"));
 	}
-	
+	/**
+	 * update person picture
+	 * @throws IOException
+	 * @throws SQLException
+	 */
 	@FXML
 	public void updatePhoto() throws IOException, SQLException {
 		
@@ -283,7 +318,9 @@ public class ContactListController {
 		}
 		
 	}
-	
+	/**
+	 * clear all fields on the layout
+	 */
 	@FXML
 	private void clearFields() {
 		
@@ -295,6 +332,11 @@ public class ContactListController {
 		this.birthDatePicker.setValue(null);
 		this.nicknameField.setText("");
 	}
+	/**
+	 * show Person Details
+	 * @param person
+	 * @throws FileNotFoundException
+	 */
 	@FXML 
 	private void showPersonDetails(Person person) throws FileNotFoundException {
 		if(person == null)

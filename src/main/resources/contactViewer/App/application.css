@@ -1,1 +1,10 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.root{
+	-fx-background-color: linear-gradient(#566375, #7F91AA);	/*Couleur de fond de la fenetre */
+	-fx-font-size: 10pt;										/*Taille du texte de la fenetre */
+}
+
+.button{
+	-fx-background-color: linear-gradient(#dc9556, #ab4642);    /*Couleur de fond des boutons */
+	-fx-background-radius: 10;									/*Angle d'arrondissement des boutons */
+}

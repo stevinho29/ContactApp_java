@@ -15,6 +15,9 @@ import javafx.scene.control.TextField;
 
 public class AddContactController {
 	
+	/**
+	 * Attribute of the AddContactController class
+	 */
 	@FXML
 	private TextField firstnameField;
 	@FXML
@@ -37,12 +40,18 @@ public class AddContactController {
 	private static PersonDao personDao= new PersonDao();
 
  
-	
+	/**
+	 * return back and show the HomeScreen interface
+	 */
 	@FXML
 	private void onBackPressed() {
 		StageService.showView(ViewService.getView("HomeScreen"));
 	}
 	
+	/**
+	 * function that handle actions performed to register a new contact
+	 * @throws SQLException
+	 */
 	@FXML
 	private void onSaveHandler() throws SQLException {
 		
@@ -117,6 +126,10 @@ public class AddContactController {
 		}
 
 	}
+	
+	/**
+	 * suppress current informations in the fields
+	 */
 	@FXML
 	private void onCancelHandler() {
 		this.firstnameField.setText("");

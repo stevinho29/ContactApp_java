@@ -11,7 +11,11 @@ public class ViewService {
 	public static <T> T getView(String id) {
 		return getLoader(id).getRoot();
 	}
-
+	/**
+	 * return loader with variable id parameter
+	 * @param id
+	 * @return
+	 */
 	private static FXMLLoader getLoader(String id) {
 		try {
 			

@@ -15,10 +15,16 @@ import javafx.scene.control.Alert.AlertType;
 
 public class ExportScreenController {
 
+	/**
+	 * attribute of the  ExportScreenController class
+	 */
 	private static PersonDao personDao= new PersonDao();
 	private static VcardService vcard= new VcardService();
 	private static List<Person>  personList;
 	
+	/**
+	 * we request from the database the list of person in a different thread when loading exportScreen fxml layout 
+	 */
 	@FXML
 	public void initialize() {
 		
@@ -37,6 +43,11 @@ public class ExportScreenController {
 			
 	}
 	
+	/**
+	 * export all contact
+	 * @throws IOException
+	 * @throws SQLException
+	 */
 	@FXML
 	public void export() throws IOException, SQLException {
 		
@@ -76,6 +87,9 @@ public class ExportScreenController {
 		alert.showAndWait();
 	}
 	
+	/**
+	 * return to the homeScreen view
+	 */
 	@FXML
 	private void onBackPressed() {
 		StageService.showView(ViewService.getView("HomeScreen"));

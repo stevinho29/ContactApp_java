@@ -14,7 +14,11 @@ import contactViewer.model.entities.Person;
 
 public class PersonDao {
 	
-	
+	/**
+	 * this method retrieve a list of all the persons in the database
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Person> listAllPerson() throws SQLException{
 		List<Person> list=new ArrayList<>() ;
 		String sql= "SELECT * FROM person";
@@ -40,7 +44,11 @@ public class PersonDao {
 		return list;
 		
 	}
-	
+	/**
+	 * this method add a new person inside the database
+	 * @param person
+	 * @throws SQLException
+	 */
 	public void addPerson(Person person) throws SQLException {
 		
 		try(Connection connection= DataSourceFactory.getConnection()){
@@ -62,6 +70,10 @@ public class PersonDao {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * this method update person informations in the database
+	 * @param person
+	 */
 	public void updatePerson(Person person) {
 		
 		try(Connection connection=  DataSourceFactory.getConnection()){
@@ -83,6 +95,10 @@ public class PersonDao {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * this method delete a person in the database
+	 * @param person
+	 */
 	public void deletePerson(Person person) {
 		
 		String sqlOrder= "DELETE FROM person WHERE email_address= ?";
@@ -96,6 +112,11 @@ public class PersonDao {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * this method add url photo for a specific person in the database
+	 * @param email
+	 * @param urlPhoto
+	 */
 	public void addUrlPhoto(String email, String urlPhoto) {
 		try(Connection connection= DataSourceFactory.getConnection()){
 			String sql = "UPDATE person SET urlPhoto= ? WHERE email_address = ? ";

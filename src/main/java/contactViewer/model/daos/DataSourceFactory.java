@@ -10,7 +10,12 @@ import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 
 public class DataSourceFactory {
-
+	
+	/**
+	 * 
+	 * @return return sql connexion with the database whether Mysql or SQLite
+	 * @throws SQLException
+	 */
 	public static Connection getConnection() throws SQLException {
 			//for an existing Mysql database
 			return DriverManager.getConnection("jdbc:mysql://localhost:8889/contactApp","root","root");
@@ -20,6 +25,10 @@ public class DataSourceFactory {
 		    //return DriverManager.getConnection(url);
 	}
 	
+	/**
+	 * this method create the data base schema 
+	 * @throws SQLException
+	 */
 	public static void createdatabaseSchema() throws SQLException {
 		Path path = null;
 		String sqlOrder= "CREATE TABLE IF NOT EXISTS person ("
