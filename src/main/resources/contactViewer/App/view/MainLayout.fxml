@@ -10,20 +10,20 @@
 	<top>
 		<MenuBar BorderPane.alignment="CENTER">
 			<menus>
-				<Menu mnemonicParsing="false" text="fichier">
+				<Menu mnemonicParsing="false" text="File">
 					<items>
 					<MenuItem mnemonicParsing="false" onAction="#onHomeMenuPressed" text="Home" />
 					<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" onAction="#onCloseMenuPressed" text="fermer" />
+						<MenuItem mnemonicParsing="false" onAction="#onCloseMenuPressed" text="Close" />
                   		
 						
 					</items>
 				</Menu>
-				<Menu mnemonicParsing="false" text="panneau">
+				<Menu mnemonicParsing="false" text="Panel">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#onListContactMenuPressed" text="Liste de contact" />
+						<MenuItem mnemonicParsing="false" onAction="#onListContactMenuPressed" text="Contacts List" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onAddContactMenuPressed" text="Ajouter un contact" />
+                  <MenuItem mnemonicParsing="false" onAction="#onAddContactMenuPressed" text="Add a Contact" />
 					</items>
 				</Menu>
 			</menus>
