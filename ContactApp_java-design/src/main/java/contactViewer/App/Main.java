@@ -13,6 +13,12 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+	/**
+	 * start the application
+	 * @param primaryStage
+	 * @throws SQLException
+	 * @throws URISyntaxException
+	 */
 	@Override
 	public void start(Stage primaryStage) throws SQLException, URISyntaxException {
 		StageService.initPrimaryStage(primaryStage);
@@ -22,9 +28,14 @@ public class Main extends Application {
 	     System.out.println(System.getProperty("user.dir"));
         DataSourceFactory.createdatabaseSchema();
 	}
-
+	
+	/**
+	 * function  main 
+	 * @param args
+	 * @throws IOException
+	 * @throws SQLException
+	 */
 	public static void main(String[] args) throws IOException, SQLException {
 		launch(args);
-	
 	}
 }

@@ -6,25 +6,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contactViewer.view.ExportScreenController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contactViewer.view.ExportScreenController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="500.0" prefWidth="800.0">
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="500.0" prefWidth="800.0" stylesheets="@../application.css">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="303.0">
+          <AnchorPane id="exportType" minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="303.0" stylesheets="@../application.css">
                <children>
-                  <Button layoutX="58.0" layoutY="201.0" mnemonicParsing="false" onAction="#export" text="Export all contacts" />
-                  <Button layoutX="63.0" layoutY="133.0" mnemonicParsing="false" text="Category export" />
-                  <Text layoutX="54.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exportation type">
+                  <Button layoutX="58.0" layoutY="201.0" mnemonicParsing="false" onAction="#export" text="Export all contacts" textFill="WHITE" />
+                  <Button layoutX="63.0" layoutY="133.0" mnemonicParsing="false" text="Category export" textFill="WHITE" />
+                  <Text fill="WHITE" layoutX="54.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exportation type">
                      <font>
-                        <Font name="Apple Chancery" size="17.0" />
+                        <Font name="System Bold" size="17.0" />
                      </font>
                   </Text>
-                  <Button layoutX="88.0" layoutY="441.0" mnemonicParsing="false" onAction="#onBackPressed" text="Cancel" />
+                  <Button layoutX="88.0" layoutY="441.0" mnemonicParsing="false" onAction="#onBackPressed" text="Cancel" textFill="WHITE" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="800.0">
+          <AnchorPane id="exportConf" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="800.0" stylesheets="@../application.css">
                <children>
-                  <Text layoutX="143.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exportation configuration">
+                  <Text fill="WHITE" layoutX="143.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exportation configuration">
                      <font>
                         <Font name="Apple Chancery" size="24.0" />
                      </font>

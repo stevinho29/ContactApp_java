@@ -10,9 +10,14 @@ import javafx.util.Callback;
 
 public class PersonValueFactory implements Callback<TableColumn.CellDataFeatures<Person, String>, ObservableValue<String>> {
 
-@Override
-public ObservableValue<String> call(CellDataFeatures<Person, String> cellData) {
-	return new SimpleStringProperty(cellData.getValue().getLastname().concat(" ").concat(cellData.getValue().getFirstname()));
-}
 
-}
+	/**
+	 * @param cellData
+	 * @return return SimpleStringPropert with CellDataFeatures<Person, String> parameter
+	 */
+	@Override
+	public ObservableValue<String> call(CellDataFeatures<Person, String> cellData) {
+		return new SimpleStringProperty(cellData.getValue().getLastname().concat(" ").concat(cellData.getValue().getFirstname()));
+	}
+	
+	}

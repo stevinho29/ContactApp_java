@@ -7,18 +7,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 import contactViewer.model.entities.Person;
 
 
 public class PersonDao {
 	
-	
+	/**
+	 * this method retrieve a list of all the persons in the database
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Person> listAllPerson() throws SQLException{
 		List<Person> list=new ArrayList<>() ;
 		String sql= "SELECT * FROM person";
-		try(Connection connection = (Connection) DataSourceFactory.getConnection()){
+		try(Connection connection =  DataSourceFactory.getConnection()){
 			try(Statement statement= connection.createStatement()){
 				try(ResultSet results= statement.executeQuery(sql)){
 					while(results.next()) {
@@ -40,10 +44,14 @@ public class PersonDao {
 		return list;
 		
 	}
-	
+	/**
+	 * this method add a new person inside the database
+	 * @param person
+	 * @throws SQLException
+	 */
 	public void addPerson(Person person) throws SQLException {
 		
-		try(Connection connection= (Connection) DataSourceFactory.getConnection()){
+		try(Connection connection= DataSourceFactory.getConnection()){
 			String sql = "INSERT INTO person(lastname,firstname,nickname,phone_number,address,email_address,birth_date,urlPhoto) values(?,?,?,?,?,?,?,?)";
 			try(PreparedStatement statement = connection.prepareStatement(sql)){
 				statement.setString(1, person.getLastname());
@@ -62,9 +70,13 @@ public class PersonDao {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * this method update person informations in the database
+	 * @param person
+	 */
 	public void updatePerson(Person person) {
 		
-		try(Connection connection= (Connection) DataSourceFactory.getConnection()){
+		try(Connection connection=  DataSourceFactory.getConnection()){
 			String sql = "UPDATE person SET firstname= ?, nickname= ?,phone_number=?,address=?,email_address=?,birth_date=?,urlPhoto=? WHERE lastname = ? ";
 			try(PreparedStatement statement = connection.prepareStatement(sql)){
 				statement.setString(1, person.getFirstname());
@@ -83,6 +95,10 @@ public class PersonDao {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * this method delete a person in the database
+	 * @param person
+	 */
 	public void deletePerson(Person person) {
 		
 		String sqlOrder= "DELETE FROM person WHERE email_address= ?";
@@ -91,6 +107,25 @@ public class PersonDao {
 			try(PreparedStatement statement= connection.prepareStatement(sqlOrder)){
 				statement.setString(1, person.getEmail_address());
 				statement.executeUpdate();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * this method add url photo for a specific person in the database
+	 * @param email
+	 * @param urlPhoto
+	 */
+	public void addUrlPhoto(String email, String urlPhoto) {
+		try(Connection connection= DataSourceFactory.getConnection()){
+			String sql = "UPDATE person SET urlPhoto= ? WHERE email_address = ? ";
+			try(PreparedStatement statement = connection.prepareStatement(sql)){
+				statement.setString(1, urlPhoto);
+				statement.setString(2, email);
+				int nbRows= statement.executeUpdate();
+				System.out.println("nb de lignes :"+nbRows);
+				
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

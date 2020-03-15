@@ -1,1 +1,32 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.root{
+	-fx-background-color: linear-gradient(#1a1917,#292826);	/*Couleur de fond de la fenetre */
+	-fx-font-size: 10pt;									/*Taille du texte de la fenetre */
+	-fx-text-fill: white;
+}
+
+.button{
+	-fx-background-color: #540000;  /*Couleur des boutons */
+	-fx-background-radius: 10;		/*Angle d'arrondissement des boutons */
+}
+
+.table-view .column-header .label{
+	-fx-text-fill: white;
+	-fx-background-color: #070707;
+}
+
+#personsTable{
+	-fx-background-color: linear-gradient(#1a1917,#292826);
+}
+
+#formPane{
+	-fx-background-color: linear-gradient(#1a1917,#292826);
+}
+
+#exportConf{
+	-fx-background-color: linear-gradient(#1a1917,#292826);
+}
+
+#exportType{
+	-fx-background-color: linear-gradient(#1a1917,#292826);
+}

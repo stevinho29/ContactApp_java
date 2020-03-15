@@ -1,7 +1,10 @@
 package pojo;
 
 public class Vcard4 {
-
+	
+	/**
+	 * attribute of the vcard4 class
+	 */
 	final private String begin= "BEGIN:VCARD\n";
 	final private String version= "VERSION:4.0\n";
 	//private String n;
@@ -13,7 +16,17 @@ public class Vcard4 {
 	private String email;
 	final private String end= "END:VCARD";
 	
-public Vcard4(String name, String surname, String urlPhoto,String tel,String address, String email) {
+	
+	/**
+	 * constructor parameters
+	 * @param name
+	 * @param surname
+	 * @param urlPhoto
+	 * @param tel
+	 * @param address
+	 * @param email
+	 */
+	public Vcard4(String name, String surname, String urlPhoto,String tel,String address, String email) {
 		
 		this.fn= "FN:".concat(name).concat(" ").concat(surname).concat("\n");
 		this.photo= "PHOTO;MEDIATYPE=image/jpeg:".concat(urlPhoto).concat("\n");
@@ -22,6 +35,14 @@ public Vcard4(String name, String surname, String urlPhoto,String tel,String add
 		this.email="EMAIL:".concat(email).concat("\n");
 	}
 	
+	/**
+	 * constructor parameters
+	 * @param name
+	 * @param surname
+	 * @param tel
+	 * @param address
+	 * @param email
+	 */
 	public Vcard4(String name, String surname, String tel,String address, String email) {
 		
 		this.fn= "FN:".concat(name).concat(" ").concat(surname).concat("\n");

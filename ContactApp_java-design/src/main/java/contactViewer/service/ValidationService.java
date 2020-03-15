@@ -8,11 +8,19 @@ import contactViewer.model.entities.Person;
 
 public class ValidationService {
 
+	/**
+	 * attribute of the ValidationService class
+	 */
 	private static String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
 	private static Pattern pattern = Pattern.compile(regex);
 	
 	private static Map<String, Boolean>  validationMap;
 	
+	/**
+	 * initialize the map with the person variable
+	 * @param person
+	 * @return
+	 */
 	public static Map<String,Boolean> registerValidation(Person person){
 		
 		if(!person.getLastname().isEmpty())
@@ -49,7 +57,11 @@ public class ValidationService {
 		return validationMap;
 		
 	}
-	
+	/**
+	 * verify if the phone number typed down by the user is a valid phone number
+	 * @param phoneNumber
+	 * @return
+	 */
 	public static Boolean isValidPhoneNumber(String phoneNumber) {
 		Integer nb;
 		try {
@@ -61,6 +73,11 @@ public class ValidationService {
 		}
 		
 	}
+	/**
+	 * verify if the email typed down by the user is a valid email address
+	 * @param email
+	 * @return
+	 */
 	public static Boolean isValidEmailFormat(String email) {
 	
 		Matcher matcher = pattern.matcher(email);

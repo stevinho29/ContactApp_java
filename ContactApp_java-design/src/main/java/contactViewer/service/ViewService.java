@@ -1,8 +1,7 @@
 package contactViewer.service;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 import contactViewer.App.Main;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,11 @@ public class ViewService {
 	public static <T> T getView(String id) {
 		return getLoader(id).getRoot();
 	}
-
+	/**
+	 * return loader with variable id parameter
+	 * @param id
+	 * @return
+	 */
 	private static FXMLLoader getLoader(String id) {
 		try {
 			

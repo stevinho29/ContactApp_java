@@ -14,21 +14,29 @@ import pojo.Vcard4;
 
 public class VcardService {
 
+	/**
+	 * attribut of the VcardService class
+	 */
 	private static String OS = System.getProperty("os.name").toLowerCase();
 	private static Path outputfile;				//représente le fichier 
 	private static Path outputdirectory;		// représente le dossier Vcard dans lequel sera enregistré tous les fichiers Vcard
 	private static Path downloadirectory;			// représente le chemin vers download(télechargements de n'importe quel os
-	final private String begin= "BEGIN:VCARD";
-	final private String version= "4.0";
+	public static int counter=0;				// counter utile pour garder le nombre de contacts update
 	private Vcard4 vcardObject;
 	
-	
+	/**
+	 * constructor of the VcardService class
+	 */
 	public VcardService() {
 		getDownloadDirectoryPath();
 	}
-	
+	/**
+	 * coordinates the export of contacts
+	 * @param List<Person> personList
+	 * @throws IOException
+	 */
 	public void orchestrator(List<Person> personList) throws IOException { // coordonne l'exportation des contacts
-		
+		counter = 0;			// on réinitialise le counter à zero
 		if(isVcardDirectoryAlreadyExists()) {
 			for(Person p: personList) {
 				instantiateVcardObject(p);
@@ -43,15 +51,83 @@ public class VcardService {
 		}
 		
 	}
+	/**
+	 * export of a single person
+	 * @param person
+	 * @throws IOException
+	 */
 	
+	public void orchestrator( Person person) throws IOException {		// export d'une seule personne
+		counter = 0;			// on réinitialise le counter à zero
+		if(isVcardDirectoryAlreadyExists()) {
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+		else {
+			createVcardDirectory();
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+	}
+	/**
+	 * export a list of person(contact) in the directory(absolutPath) specified by the user)
+	 * @param personList
+	 * @param absolutPath
+	 */
+	public void personnalizedExport(List<Person> personList,String absolutPath) {
+		try {
+			counter = 0;			// on réinitialise le counter à zero
+			if(isVcardDirectoryAlreadyExists(absolutPath)) {
+				for(Person p: personList) {
+					instantiateVcardObject(p);
+					exportVcardFile();
+				}	
+			}else {
+				createPersonnalizedVcardDirectory();
+				for(Person p: personList) {
+					instantiateVcardObject(p);
+					exportVcardFile();
+				}
+			}	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	/**
+	 * export one person(contact) in the directory(absolutPth) specified by the user
+	 * @param person
+	 * @param absolutPath
+	 * @throws IOException
+	 */
+	private void personnalizedExport(Person person, String absolutPath) throws IOException {
+		if(isVcardDirectoryAlreadyExists(absolutPath)) {
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+		else {
+			createPersonnalizedVcardDirectory();
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+	}
+	/**
+	 * 
+	 * Instantiates a vcardObject
+	 * @param person
+	 */
 	private void instantiateVcardObject(Person person) {
 		this.vcardObject = new Vcard4(person.getLastname(),person.getFirstname(),person.getPhone_number().toString(),person.getAddress(),person.getEmail_address());
 	}
-	
+	/**
+	 * export VcardFile
+	 * @throws IOException
+	 */
 	private void exportVcardFile() throws IOException {
 		
 			if(isVcardFileAlreadyExists(vcardObject.getFn())) {
-				
+				counter++;
 				fillinVcardFile();
 			}
 			else {
@@ -60,6 +136,10 @@ public class VcardService {
 			}
 	}
 	
+	/**
+	 * this method fill in a Vcard file by writing in bufferedWriter 
+	 * @throws IOException
+	 */
 	private void fillinVcardFile() throws IOException {
 
 		BufferedWriter bufferedWriter= Files.newBufferedWriter(outputfile, StandardCharsets.UTF_8);
@@ -81,11 +161,16 @@ public class VcardService {
 			bufferedWriter.close();
 		}
 	}
-	
-	private void getDownloadDirectoryPath() {
+	/**
+	 * static method to get Download directory on every OS
+	 */
+	private static void getDownloadDirectoryPath() {
 		downloadirectory= Paths.get(System.getProperty("user.home")+"/Downloads");
 	}
-	
+	/**
+	 * verify if Vcard directory already exist or not
+	 * @return
+	 */
 	private Boolean isVcardDirectoryAlreadyExists() {
 		outputdirectory= downloadirectory.resolve("Vcard");
 		if(!Files.exists(outputdirectory))
@@ -94,6 +179,23 @@ public class VcardService {
 			return true;
 	}
 	
+	
+	/**
+	 * verify if the path specified by the user exists
+	 * @param absolutPath
+	 * @return return true if it exists and false if it doesn't
+	 */
+	private boolean isVcardDirectoryAlreadyExists(String absolutPath) {
+		outputdirectory= Paths.get(absolutPath+"/Vcard");
+		if(!Files.exists(outputdirectory))
+			return false;
+		else
+			return true;
+	}
+	
+	/**
+	 * create Vcard Directory
+	 */
 	private void createVcardDirectory() {
 		try {
 			Files.createDirectory(downloadirectory.resolve("Vcard"));
@@ -104,6 +206,25 @@ public class VcardService {
 		}
 	}
 	
+	
+	/**
+	 * create vcard directory in a directory specified by the user
+	 */
+	private void createPersonnalizedVcardDirectory() {
+		try {
+			Files.createDirectory(outputdirectory);
+			System.out.println("Directory created ");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * verify if Vcard File specify by the parameter name Already Exists 
+	 * @param name
+	 * @return a boolean true if it exist or false if it doesn't
+	 */
 	private Boolean isVcardFileAlreadyExists(String name) {
 		outputfile= outputdirectory.resolve(vcardObject.getFn().replace("FN:"," ").trim()+".vcf");
 		if(!Files.exists(outputfile))
@@ -112,6 +233,10 @@ public class VcardService {
 			return true;
 	}
 	
+	/**
+	 * create Vcard File specify by the parameter name
+	 * @param name
+	 */
 	private void createVcardFile(String name) {
 		try {
 			Files.createFile(outputfile);
