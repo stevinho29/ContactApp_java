@@ -29,6 +29,12 @@
                         <Font name="Apple Chancery" size="24.0" />
                      </font>
                   </Text>
+                  <Button fx:id="defaultExportButton" layoutX="332.0" layoutY="143.0" mnemonicParsing="false" onAction="#defaultExportation" text="par défaut" visible="false" />
+                  
+                  <Button fx:id="personnalizedExportButton" layoutX="332.0" layoutY="236.0" mnemonicParsing="false" onAction="#personnalizedExportation" text="personnalisé" visible="false" />
+                  
+                  <Text fx:id="defaultExportText" layoutX="33.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="utilser le chemin d'exportation par défaut" visible="false" />
+                  <Text fx:id="personnalizedExportText" layoutX="33.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="personnaliser le chemin d'exportation" visible="false" />
                </children>
             </AnchorPane>
         </items>

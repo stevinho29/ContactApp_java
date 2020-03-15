@@ -70,6 +70,49 @@ public class VcardService {
 		}
 	}
 	/**
+	 * export a list of person(contact) in the directory(absolutPath) specified by the user)
+	 * @param personList
+	 * @param absolutPath
+	 */
+	public void personnalizedExport(List<Person> personList,String absolutPath) {
+		try {
+			counter = 0;			// on réinitialise le counter à zero
+			if(isVcardDirectoryAlreadyExists(absolutPath)) {
+				for(Person p: personList) {
+					instantiateVcardObject(p);
+					exportVcardFile();
+				}	
+			}else {
+				createPersonnalizedVcardDirectory();
+				for(Person p: personList) {
+					instantiateVcardObject(p);
+					exportVcardFile();
+				}
+			}	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	/**
+	 * export one person(contact) in the directory(absolutPth) specified by the user
+	 * @param person
+	 * @param absolutPath
+	 * @throws IOException
+	 */
+	private void personnalizedExport(Person person, String absolutPath) throws IOException {
+		if(isVcardDirectoryAlreadyExists(absolutPath)) {
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+		else {
+			createPersonnalizedVcardDirectory();
+			instantiateVcardObject(person);
+			exportVcardFile();
+		}
+	}
+	/**
 	 * 
 	 * Instantiates a vcardObject
 	 * @param person
@@ -92,6 +135,7 @@ public class VcardService {
 				fillinVcardFile();
 			}
 	}
+	
 	/**
 	 * this method fill in a Vcard file by writing in bufferedWriter 
 	 * @throws IOException
@@ -134,6 +178,21 @@ public class VcardService {
 		else
 			return true;
 	}
+	
+	
+	/**
+	 * verify if the path specified by the user exists
+	 * @param absolutPath
+	 * @return return true if it exists and false if it doesn't
+	 */
+	private boolean isVcardDirectoryAlreadyExists(String absolutPath) {
+		outputdirectory= Paths.get(absolutPath+"/Vcard");
+		if(!Files.exists(outputdirectory))
+			return false;
+		else
+			return true;
+	}
+	
 	/**
 	 * create Vcard Directory
 	 */
@@ -146,6 +205,21 @@ public class VcardService {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * create vcard directory in a directory specified by the user
+	 */
+	private void createPersonnalizedVcardDirectory() {
+		try {
+			Files.createDirectory(outputdirectory);
+			System.out.println("Directory created ");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * verify if Vcard File specify by the parameter name Already Exists 
 	 * @param name
@@ -158,6 +232,7 @@ public class VcardService {
 		else
 			return true;
 	}
+	
 	/**
 	 * create Vcard File specify by the parameter name
 	 * @param name
